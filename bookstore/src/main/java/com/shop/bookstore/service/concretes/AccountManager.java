@@ -2,6 +2,8 @@ package com.shop.bookstore.service.concretes;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.shop.bookstore.core.utilities.exceptions.BusinessException;
 import org.springframework.stereotype.Service;
 import com.shop.bookstore.core.utilities.mappers.ModelMapperService;
 import com.shop.bookstore.dto.requests.account.CreateAccountRequest;
@@ -37,9 +39,7 @@ public class AccountManager implements AccountService{
 	
 	@Override
 	public GetByIdAccountResponse getById(Long id){
-		accountBusinessRules.accountCheckId(id);
-		
-		Optional<Account> account = accountRepository.findById(id);
+		Account account = accountRepository.findById(id).orElseThrow(()-> new BusinessException("Account Id is not found"));
 		GetByIdAccountResponse response = modelMapperService.forResponse().map(account, GetByIdAccountResponse.class);
 		
 		return response;
@@ -50,7 +50,7 @@ public class AccountManager implements AccountService{
 	public CreateAccountRequest add(CreateAccountRequest createAccountRequest) {
 		accountBusinessRules.accountCheckUserName(createAccountRequest.getUserName());
 		accountBusinessRules.accountCheckGmail(createAccountRequest.getGmail());
-		
+
 		Account account = modelMapperService.forRequest().map(createAccountRequest, Account.class);
 		accountRepository.save(account);
 		return createAccountRequest;

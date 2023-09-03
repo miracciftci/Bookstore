@@ -1,5 +1,6 @@
 package com.shop.bookstore.service.rules;
 
+import com.shop.bookstore.entities.Book;
 import org.springframework.stereotype.Service;
 import com.shop.bookstore.core.utilities.exceptions.BusinessException;
 import com.shop.bookstore.repository.BookRepository;
@@ -13,8 +14,7 @@ public class BookBusinessRules {
 	BookRepository bookRepository;
 	
 	public void checkBookId(Long id){
-		if(!bookRepository.existsById(id)) 
-			throw new BusinessException("Book Id is not found");		
+		Book book = bookRepository.findById(id).orElseThrow(()-> new BusinessException("Book Id is not found yyee"));
 	}
 	
 	

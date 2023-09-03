@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import com.shop.bookstore.core.utilities.exceptions.BusinessException;
 import org.springframework.stereotype.Service;
 import com.shop.bookstore.core.utilities.mappers.ModelMapperService;
 import com.shop.bookstore.dto.requests.book.CreateBookRequest;
@@ -40,12 +41,10 @@ public class BookManager implements BookService{
 
 	@Override
 	public GetByIdBookResponse getById(Long id){
-		bookBusinessRules.checkBookId(id);
-		Optional<Book> book = bookRepository.findById(id);
+		Book book = bookRepository.findById(id).orElseThrow(() -> new BusinessException("Book Id is not found"));  // optional class
 		GetByIdBookResponse response = modelMapperService.forResponse().map(book, GetByIdBookResponse.class);
 		
 		return response;
-		
 	}
 
 	@Override
@@ -69,7 +68,7 @@ public class BookManager implements BookService{
 	@Override
 	public void delete(Long id){
 		bookBusinessRules.checkBookId(id);
-		bookRepository.deleteById(id);	
+		bookRepository.deleteById(id);
 	}
 	
 	

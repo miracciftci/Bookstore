@@ -18,9 +18,7 @@ public class BookCommentsBusinnesRules {
 	
 	
 	public void checkCommentId(Long id) {
-		if(!bookCommentsRepository.existsById(id)) {
-			throw new BusinessException("Comment id is not found");
-		}
+		BookComments bookComments = bookCommentsRepository.findById(id).orElseThrow(()-> new BusinessException("Comment id is not found"));
 	}
 	
 	public void checkCommentAgain(Long accountId, Long bookId) {
