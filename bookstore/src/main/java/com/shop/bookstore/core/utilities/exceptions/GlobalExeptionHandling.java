@@ -37,7 +37,7 @@ public class GlobalExeptionHandling {
     
     
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(Exception.class)  // Herhangi bir runtime exeption'da çalışır
     public String otherAllException(Exception exception) {
     	String message = "Exception Message: " + exception.getMessage();
         return message;
