@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Service
 public class AccountBusinessRules {
-	// Business rules
+	// Business rules exapmle
 	
 	AccountRepository accountRepository;
 	
