@@ -4,9 +4,11 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,11 +19,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateBookRequest {
 	
-	@NotEmpty
 	@Size(min = 3,max = 100)
 	private String name;
 	
-	@Positive
+	
+	@Min(0)
 	private int numberOfPages;
 	
 	@NotEmpty
@@ -35,10 +37,10 @@ public class CreateBookRequest {
 	
 	private String image;
 	
-	@Min(value = 0)
+	@PositiveOrZero
 	private double oldPrice;
 	
-	@Min(value = 0)
+	@PositiveOrZero
 	private double newPrice;	
 	
 	

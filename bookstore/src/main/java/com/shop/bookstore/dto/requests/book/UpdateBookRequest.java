@@ -3,9 +3,12 @@ package com.shop.bookstore.dto.requests.book;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +23,7 @@ public class UpdateBookRequest {
 	@Size(min = 3,max = 100)
 	private String name;
 	
-	@Min(value = 0)
+	@Positive
 	private int numberOfPages;
 	
 	@NotEmpty
@@ -31,13 +34,16 @@ public class UpdateBookRequest {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dateOfIssue;
 	
+	@Min(0)
+	@Max(10)
 	private double point;
+	
 	private String image;
 	
-	@Min(value = 0)
+	@PositiveOrZero
 	private double oldPrice;
 	
-	@Min(value = 0)
+	@PositiveOrZero
 	private double newPrice;	
 	
 }

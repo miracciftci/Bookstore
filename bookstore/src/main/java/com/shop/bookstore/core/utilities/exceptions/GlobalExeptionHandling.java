@@ -22,8 +22,8 @@ public class GlobalExeptionHandling {
 	}
 	
 	
-    @ExceptionHandler
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST) // @ResponseStatus ile geriye dönülen response kodunun statüsünü beliriyoruz
     public ProblemDetails handleValidationException(MethodArgumentNotValidException methodArgumentNotValidException) {
         ValidationProblemDetails validationProblemDetails = new ValidationProblemDetails();
         validationProblemDetails.setMessage("VALIDATION.EXCEPTION");
@@ -31,7 +31,8 @@ public class GlobalExeptionHandling {
         validationProblemDetails.setPath(methodArgumentNotValidException.getNestedPath());
         
         validationProblemDetails.setValidationErrors(new HashMap<String,String>());
-        for (FieldError fieldError : methodArgumentNotValidException.getBindingResult().getFieldErrors()) {
+        // MethodArgumentNotValidException gelen validation hatalarının bulunduğu bir yapı ve içinden tek tek o hataları çekip map yapımıza atıyruz
+        for (FieldError fieldError : methodArgumentNotValidException.getBindingResult().getFieldErrors()) {   
             validationProblemDetails.getValidationErrors().put(fieldError.getField(), fieldError.getDefaultMessage());
         }
         return validationProblemDetails;
