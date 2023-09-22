@@ -27,8 +27,10 @@ public class GlobalExeptionHandling {
     public ProblemDetails handleValidationException(MethodArgumentNotValidException methodArgumentNotValidException) {
         ValidationProblemDetails validationProblemDetails = new ValidationProblemDetails();
         validationProblemDetails.setMessage("VALIDATION.EXCEPTION");
+        validationProblemDetails.setStatus(400);
+        validationProblemDetails.setPath(methodArgumentNotValidException.getNestedPath());
+        
         validationProblemDetails.setValidationErrors(new HashMap<String,String>());
-
         for (FieldError fieldError : methodArgumentNotValidException.getBindingResult().getFieldErrors()) {
             validationProblemDetails.getValidationErrors().put(fieldError.getField(), fieldError.getDefaultMessage());
         }
