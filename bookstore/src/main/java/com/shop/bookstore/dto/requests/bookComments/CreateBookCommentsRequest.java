@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
@@ -26,7 +27,7 @@ public class CreateBookCommentsRequest {
 	@Max(10)
 	private double point;
 	
-	@NotEmpty
+	@NotBlank
 	private String comment;
 	
 	private Long bookId;

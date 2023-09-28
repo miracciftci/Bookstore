@@ -9,13 +9,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 
-@Table(name = "account")
+@Table(name = "account", uniqueConstraints = @UniqueConstraint(columnNames = {"gmail"}))  // uniqueConstraints hangi kolonların uniq olmasını istiyorsak onları liste türünde bizden istiyor
 @Data
 @ToString
 @AllArgsConstructor

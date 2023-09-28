@@ -19,14 +19,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateBookRequest {
 	
-	@Size(min = 3,max = 100)
+	@Size(min = 3,max = 255)
 	private String name;
 	
-	
-	@Min(0)
+	@Positive
 	private int numberOfPages;
 	
-	@NotEmpty
+	@NotBlank
 	private String writer;
 	
 	private String typeOfBook;

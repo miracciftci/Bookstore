@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExeptionHandling {	
 	
-	@ExceptionHandler
+	@ExceptionHandler(BusinessException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ProblemDetails handleBusinnessException(BusinessException businessException) {
 		ProblemDetails problemDetails = new ProblemDetails();

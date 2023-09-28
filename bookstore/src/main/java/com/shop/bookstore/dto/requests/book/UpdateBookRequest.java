@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Positive;
@@ -19,15 +20,15 @@ import lombok.NoArgsConstructor;
 @Data
 public class UpdateBookRequest {
 	
-	@NotEmpty
-	@Size(min = 3,max = 100)
+	@Size(min = 3,max = 255)
 	private String name;
 	
 	@Positive
 	private int numberOfPages;
 	
-	@NotEmpty
+	@NotBlank
 	private String writer;
+	
 	private String typeOfBook;
 	
 	@Past
