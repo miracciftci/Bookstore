@@ -1,10 +1,8 @@
 package com.shop.bookstore.service.concretes;
 
 import java.util.List;
-import java.util.Optional;
-
-import com.shop.bookstore.core.utilities.exceptions.BusinessException;
 import org.springframework.stereotype.Service;
+import com.shop.bookstore.core.utilities.exceptions.BusinessException;
 import com.shop.bookstore.core.utilities.mappers.ModelMapperService;
 import com.shop.bookstore.dto.requests.account.CreateAccountRequest;
 import com.shop.bookstore.dto.requests.account.UpdateAccountRequest;
@@ -48,9 +46,6 @@ public class AccountManager implements AccountService{
 	
 	@Override
 	public CreateAccountRequest add(CreateAccountRequest createAccountRequest) {
-		accountBusinessRules.accountCheckUserName(createAccountRequest.getUserName());
-		accountBusinessRules.accountCheckGmail(createAccountRequest.getGmail());
-
 		Account account = modelMapperService.forRequest().map(createAccountRequest, Account.class);
 		accountRepository.save(account);
 		return createAccountRequest;
@@ -60,9 +55,7 @@ public class AccountManager implements AccountService{
 	@Override
 	public UpdateAccountRequest update(UpdateAccountRequest updateAccountRequest ,Long id){
 		accountBusinessRules.accountCheckId(id);
-		accountBusinessRules.accountCheckUserName(updateAccountRequest.getUserName());
-		accountBusinessRules.accountCheckGmail(updateAccountRequest.getGmail());
-		
+
 		Account account = modelMapperService.forRequest().map(updateAccountRequest, Account.class);
 		account.setId(id);
 		accountRepository.save(account);
@@ -73,6 +66,7 @@ public class AccountManager implements AccountService{
 	@Override
 	public void delete(Long id){
 		accountBusinessRules.accountCheckId(id);
+		
 		accountRepository.deleteById(id);
 	}
 	

@@ -1,5 +1,8 @@
 package com.shop.bookstore.dto.requests.account;
 
+import com.shop.bookstore.core.utilities.exceptions.validation.UniqueEmail;
+import com.shop.bookstore.core.utilities.exceptions.validation.UniqueUsername;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -14,9 +17,11 @@ import lombok.NoArgsConstructor;
 public class CreateAccountRequest {
 	
 	@Size(min = 3, max = 255)
+	@UniqueUsername
 	private String userName;
 	
 	@Email
+	@UniqueEmail
 	@NotBlank
 	private String gmail;
 	

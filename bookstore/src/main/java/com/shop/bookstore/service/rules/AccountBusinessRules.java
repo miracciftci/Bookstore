@@ -17,17 +17,4 @@ public class AccountBusinessRules {
 	public void accountCheckId(Long id){
 		Account account = accountRepository.findById(id).orElseThrow(()-> new BusinessException("Account Id is not found"));
 	}
-	
-	public void accountCheckUserName(String userName) {
-		if(accountRepository.existsByUserName(userName))
-			throw new BusinessException("The entered Username exists");
-	}
-	
-	public void accountCheckGmail(String gmail) {
-		if(accountRepository.existsByGmail(gmail))
-			throw new BusinessException("The entered gmail exists");
-	}
-	
-	
-	
 }
