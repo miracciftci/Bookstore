@@ -11,7 +11,7 @@ import jakarta.validation.Payload;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UniqueUsername {
-	String message() default "The entered Username exists";
+	String message() default "{bookstore.constraint.userName.notunique}";
 
 	Class<?>[] groups() default { };
 

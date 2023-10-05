@@ -13,7 +13,7 @@ import jakarta.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UniqueEmail {
 	
-	String message() default "The entered gmail exists";
+	String message() default "{bookstore.constraint.gmail.notunique}";
 
 	Class<?>[] groups() default { };
 

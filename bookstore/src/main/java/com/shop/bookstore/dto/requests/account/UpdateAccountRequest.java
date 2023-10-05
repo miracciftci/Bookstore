@@ -22,11 +22,11 @@ public class UpdateAccountRequest {
 	
 	@Email
 	@UniqueEmail
-	@NotBlank
+	@NotBlank(message = "{bookstore.constraint.gmail.notblank}")
 	private String gmail;
 	
 	@Size(min = 8, max = 255)
-	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$",message = "The password must contain at least 1 uppercase letter, 1 lowercase letter and 1 number.")
+	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$",message = "{bookstore.constraint.password.pattern}")
 	private String password;
 	
 	
