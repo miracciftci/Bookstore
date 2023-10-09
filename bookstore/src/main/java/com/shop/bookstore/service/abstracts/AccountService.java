@@ -10,8 +10,8 @@ import com.shop.bookstore.dto.responses.account.GetByIdAccountResponse;
 public interface AccountService {
 	List<GetAllAccountsResponse> getAll();
 	GetByIdAccountResponse getById(Long id);
-	CreateAccountRequest add(CreateAccountRequest createAccountRequest);
-    UpdateAccountRequest update(UpdateAccountRequest updateAccountRequest, Long id);
+	void add(CreateAccountRequest createAccountRequest);
+    void update(UpdateAccountRequest updateAccountRequest, Long id);
 	void delete(Long id);
 	
 }

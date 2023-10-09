@@ -1,11 +1,8 @@
 package com.shop.bookstore.service.concretes;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
-
-import com.shop.bookstore.core.utilities.exceptions.BusinessException;
 import org.springframework.stereotype.Service;
+import com.shop.bookstore.core.utilities.exceptions.BusinessException;
 import com.shop.bookstore.core.utilities.mappers.ModelMapperService;
 import com.shop.bookstore.dto.requests.book.CreateBookRequest;
 import com.shop.bookstore.dto.requests.book.UpdateBookRequest;
@@ -48,21 +45,21 @@ public class BookManager implements BookService{
 	}
 
 	@Override
-	public Book add(CreateBookRequest createBookRequest) {		
+	public void add(CreateBookRequest createBookRequest) {		
 		Book book = modelMapperService.forRequest().map(createBookRequest, Book.class);
 		book.setPoint(0);
-		return bookRepository.save(book);
+		bookRepository.save(book);
 	}
 
 	@Override
-	public Book update(UpdateBookRequest updateBookRequest, Long id) {
+	public void update(UpdateBookRequest updateBookRequest, Long id) {
 		bookBusinessRules.checkBookId(id);
 		
 		double point = getById(id).getPoint();
 		Book book = modelMapperService.forRequest().map(updateBookRequest, Book.class);
 		book.setId(id);
 		book.setPoint(point);
-		return bookRepository.save(book);
+		bookRepository.save(book);
 	}
 
 	@Override

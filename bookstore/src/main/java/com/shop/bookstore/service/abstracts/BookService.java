@@ -11,8 +11,8 @@ import com.shop.bookstore.entities.Book;
 public interface BookService {
 	List<GetAllBooksResponse> getAll();
 	GetByIdBookResponse getById(Long id);
-	Book add(CreateBookRequest createBookRequest);
-	Book update(UpdateBookRequest updateBookRequest, Long id);
+	void add(CreateBookRequest createBookRequest);
+	void update(UpdateBookRequest updateBookRequest, Long id);
 	void delete(Long id);
 	void updatePoint(Long id);
 }

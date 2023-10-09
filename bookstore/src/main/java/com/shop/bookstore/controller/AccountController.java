@@ -14,6 +14,8 @@ import com.shop.bookstore.dto.requests.account.UpdateAccountRequest;
 import com.shop.bookstore.dto.responses.account.GetAllAccountsResponse;
 import com.shop.bookstore.dto.responses.account.GetByIdAccountResponse;
 import com.shop.bookstore.service.abstracts.AccountService;
+import com.shop.bookstore.shared.GenericMessage;
+
 import jakarta.validation.Valid;
 
 
@@ -40,18 +42,21 @@ public class AccountController {
 	
 	
 	@PostMapping("/add")
-	public CreateAccountRequest add(@RequestBody @Valid CreateAccountRequest createAccountRequest) {
-		return accountService.add(createAccountRequest);
+	public GenericMessage add(@RequestBody @Valid CreateAccountRequest createAccountRequest) {
+		accountService.add(createAccountRequest);
+		return new GenericMessage("Account successfully registered");
 	}
 	
 	@PutMapping("/update/{id}")
-	public UpdateAccountRequest update(@RequestBody @Valid UpdateAccountRequest updateAccountRequest,@PathVariable Long id) {
-		return accountService.update(updateAccountRequest,id);
+	public GenericMessage update(@RequestBody @Valid UpdateAccountRequest updateAccountRequest,@PathVariable Long id) {
+		accountService.update(updateAccountRequest,id);
+		return new GenericMessage("Account updated successfully");
 	} 
 	
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable Long id) {
+	public GenericMessage delete(@PathVariable Long id) {
 		accountService.delete(id);
+		return new GenericMessage("Account deleted successfully");
 	}
 	
 	

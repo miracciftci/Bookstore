@@ -22,7 +22,7 @@ public class UpdateAccountRequest {
 	
 	@Email
 	@UniqueEmail
-	@NotBlank(message = "{bookstore.constraint.gmail.notblank}")
+	@NotBlank
 	private String gmail;
 	
 	@Size(min = 8, max = 255)

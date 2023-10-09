@@ -23,7 +23,7 @@ public class UpdateBookRequest {
 	@Size(min = 3,max = 255)
 	private String name;
 	
-	@Positive
+	@Positive(message = "{bookstore.constraint.book.Positive}")
 	private int numberOfPages;
 	
 	@NotBlank
@@ -41,10 +41,10 @@ public class UpdateBookRequest {
 	
 	private String image;
 	
-	@PositiveOrZero
+	@PositiveOrZero(message = "{bookstore.constraint.book.PositiveOrZero}")
 	private double oldPrice;
 	
-	@PositiveOrZero
+	@PositiveOrZero(message = "{bookstore.constraint.book.PositiveOrZero}")
 	private double newPrice;	
 	
 }

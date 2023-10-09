@@ -1,6 +1,8 @@
 package com.shop.bookstore.service.concretes;
 
 import java.util.List;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.shop.bookstore.core.utilities.exceptions.BusinessException;
 import com.shop.bookstore.core.utilities.mappers.ModelMapperService;
@@ -21,7 +23,7 @@ public class AccountManager implements AccountService{
 	private AccountRepository accountRepository;
 	private AccountBusinessRules accountBusinessRules;
 	private ModelMapperService modelMapperService;
-	
+	private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public List<GetAllAccountsResponse> getAll() {
@@ -45,21 +47,21 @@ public class AccountManager implements AccountService{
 
 	
 	@Override
-	public CreateAccountRequest add(CreateAccountRequest createAccountRequest) {
+	public void add(CreateAccountRequest createAccountRequest) {
+		createAccountRequest.setPassword(passwordEncoder.encode(createAccountRequest.getPassword()));
 		Account account = modelMapperService.forRequest().map(createAccountRequest, Account.class);
 		accountRepository.save(account);
-		return createAccountRequest;
 	}
 
 	
 	@Override
-	public UpdateAccountRequest update(UpdateAccountRequest updateAccountRequest ,Long id){
+	public void update(UpdateAccountRequest updateAccountRequest ,Long id){
 		accountBusinessRules.accountCheckId(id);
 
 		Account account = modelMapperService.forRequest().map(updateAccountRequest, Account.class);
 		account.setId(id);
+		
 		accountRepository.save(account);
-		return updateAccountRequest;
 	}
 	
 

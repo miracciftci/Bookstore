@@ -15,6 +15,7 @@ import com.shop.bookstore.dto.responses.book.GetAllBooksResponse;
 import com.shop.bookstore.dto.responses.book.GetByIdBookResponse;
 import com.shop.bookstore.entities.Book;
 import com.shop.bookstore.service.abstracts.BookService;
+import com.shop.bookstore.shared.GenericMessage;
 
 import jakarta.validation.Valid;
 
@@ -41,18 +42,21 @@ public class BookController {
 	}
 	
 	@PostMapping("/add")
-	public Book add(@RequestBody @Valid CreateBookRequest createBookRequest) {
-		return bookService.add(createBookRequest);
+	public GenericMessage add(@RequestBody @Valid CreateBookRequest createBookRequest) {
+		bookService.add(createBookRequest);
+		return new GenericMessage("Book added successfully");
 	}
 	
 	@PutMapping("/update/{id}")
-	public Book update(@RequestBody @Valid UpdateBookRequest updateBookRequest, @PathVariable Long id) {
-		return bookService.update(updateBookRequest, id);
+	public GenericMessage update(@RequestBody @Valid UpdateBookRequest updateBookRequest, @PathVariable Long id) {
+		bookService.update(updateBookRequest, id);
+		return new GenericMessage("Book updated successfully");
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable Long id) {
+	public GenericMessage delete(@PathVariable Long id) {
 		bookService.delete(id);
+		return new GenericMessage("Book deleted successfully");
 	}
 	
 
