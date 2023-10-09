@@ -16,8 +16,7 @@ public class GetAllBooksResponse {
 	private String writer;
 	private double point;
 	private String typeOfBook;
-	
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dateOfIssue;
 	
