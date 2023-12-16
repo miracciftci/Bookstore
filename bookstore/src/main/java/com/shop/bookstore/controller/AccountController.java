@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.shop.bookstore.dto.requests.account.CreateAccountRequest;
 import com.shop.bookstore.dto.requests.account.UpdateAccountRequest;
@@ -29,6 +31,10 @@ public class AccountController {
 		this.accountService = accountService;
 	}
 	
+	@RequestMapping(value = "deneme",method = RequestMethod.GET)
+	public String deneme(@RequestParam("username") String username, @RequestParam("password") String password) {
+		return username + password;
+	}
 	
 	@GetMapping()
 	public List<GetAllAccountsResponse> getAll() {
