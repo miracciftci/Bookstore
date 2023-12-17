@@ -2,7 +2,9 @@ package com.shop.bookstore.service.concretes;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.stereotype.Service;
+
 import com.shop.bookstore.core.utilities.mappers.ModelMapperService;
 import com.shop.bookstore.dto.requests.bookComments.CreateBookCommentsRequest;
 import com.shop.bookstore.dto.responses.bookComments.GetAllCommentsResponses;
@@ -14,21 +16,34 @@ import com.shop.bookstore.service.abstracts.BookService;
 import com.shop.bookstore.service.rules.AccountBusinessRules;
 import com.shop.bookstore.service.rules.BookBusinessRules;
 import com.shop.bookstore.service.rules.BookCommentsBusinnesRules;
-import lombok.AllArgsConstructor;
 
 
-@AllArgsConstructor
 @Service
 public class BookCommentsManager implements BookCommentsService{
-	BookCommentsRepository bookCommentsRepository;
-	ModelMapperService modelMapperService;
-	BookCommentsBusinnesRules bookCommentsBusinnesRules;
-	AccountBusinessRules accountBusinessRules;
-	BookBusinessRules bookBusinessRules;
-	AccountService accountService;
-	BookService bookService;
+	private	BookCommentsRepository bookCommentsRepository;
+	private ModelMapperService modelMapperService;
+	private BookCommentsBusinnesRules bookCommentsBusinnesRules;
+	private AccountBusinessRules accountBusinessRules;
+	private BookBusinessRules bookBusinessRules;
+	private AccountService accountService;
+	private BookService bookService;
 	
 	
+	
+	public BookCommentsManager(BookCommentsRepository bookCommentsRepository, ModelMapperService modelMapperService,
+			BookCommentsBusinnesRules bookCommentsBusinnesRules, AccountBusinessRules accountBusinessRules,
+			BookBusinessRules bookBusinessRules, AccountService accountService, BookService bookService) {
+		super();
+		this.bookCommentsRepository = bookCommentsRepository;
+		this.modelMapperService = modelMapperService;
+		this.bookCommentsBusinnesRules = bookCommentsBusinnesRules;
+		this.accountBusinessRules = accountBusinessRules;
+		this.bookBusinessRules = bookBusinessRules;
+		this.accountService = accountService;
+		this.bookService = bookService;
+	}
+
+
 	@Override
 	public List<GetAllCommentsResponses> getAllComments() {
 		List<BookComments> bookComments = bookCommentsRepository.findAll();

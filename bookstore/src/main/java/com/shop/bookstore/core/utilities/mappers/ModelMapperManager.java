@@ -3,9 +3,8 @@ package com.shop.bookstore.core.utilities.mappers;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
-import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
+
 @Service
 public class ModelMapperManager implements ModelMapperService{
 	private ModelMapper modelMapper;
@@ -27,4 +26,22 @@ public class ModelMapperManager implements ModelMapperService{
 		return this.modelMapper;
 	}
 
+	
+	public ModelMapperManager() {
+	}
+	
+	public ModelMapperManager(ModelMapper modelMapper) {
+		this.modelMapper = modelMapper;
+	}
+
+	public ModelMapper getModelMapper() {
+		return modelMapper;
+	}
+
+	public void setModelMapper(ModelMapper modelMapper) {
+		this.modelMapper = modelMapper;
+	}
+	
+	
+	
 }

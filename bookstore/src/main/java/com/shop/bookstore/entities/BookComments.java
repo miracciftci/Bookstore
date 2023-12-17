@@ -1,6 +1,7 @@
 package com.shop.bookstore.entities;
 
 import java.util.Date;
+
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -14,17 +15,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 
 @Table(name = "bookComments")
-@Data
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 public class BookComments {
 	
@@ -51,6 +44,100 @@ public class BookComments {
 	private Date commentDate;
 	private double point;
 	private String comment;
+	
+	
+	
+	public BookComments() {
+	}
+
+
+
+	public BookComments(long id, Account account, Book book, Date commentDate, double point, String comment) {
+		super();
+		this.id = id;
+		this.account = account;
+		this.book = book;
+		this.commentDate = commentDate;
+		this.point = point;
+		this.comment = comment;
+	}
+
+
+
+	public long getId() {
+		return id;
+	}
+
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+
+	public Account getAccount() {
+		return account;
+	}
+
+
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+
+
+	public Book getBook() {
+		return book;
+	}
+
+
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+
+
+	public Date getCommentDate() {
+		return commentDate;
+	}
+
+
+
+	public void setCommentDate(Date commentDate) {
+		this.commentDate = commentDate;
+	}
+
+
+
+	public double getPoint() {
+		return point;
+	}
+
+
+
+	public void setPoint(double point) {
+		this.point = point;
+	}
+
+
+
+	public String getComment() {
+		return comment;
+	}
+
+
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	
+	
+	
+	
+	
 	
 
 }

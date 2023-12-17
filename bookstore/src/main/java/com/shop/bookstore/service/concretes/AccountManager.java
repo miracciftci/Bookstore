@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import com.shop.bookstore.core.utilities.exceptions.BusinessException;
 import com.shop.bookstore.core.utilities.mappers.ModelMapperService;
 import com.shop.bookstore.dto.requests.account.CreateAccountRequest;
@@ -14,17 +15,25 @@ import com.shop.bookstore.entities.Account;
 import com.shop.bookstore.repository.AccountRepository;
 import com.shop.bookstore.service.abstracts.AccountService;
 import com.shop.bookstore.service.rules.AccountBusinessRules;
-import lombok.AllArgsConstructor;
 
 
 @Service
-@AllArgsConstructor
 public class AccountManager implements AccountService{
 	private AccountRepository accountRepository;
 	private AccountBusinessRules accountBusinessRules;
 	private ModelMapperService modelMapperService;
 	private PasswordEncoder passwordEncoder;
 	
+	
+	public AccountManager(AccountRepository accountRepository, AccountBusinessRules accountBusinessRules,
+			ModelMapperService modelMapperService, PasswordEncoder passwordEncoder) {
+		this.accountRepository = accountRepository;
+		this.accountBusinessRules = accountBusinessRules;
+		this.modelMapperService = modelMapperService;
+		this.passwordEncoder = passwordEncoder;
+	}
+
+
 	@Override
 	public List<GetAllAccountsResponse> getAll() {
 		List<Account> array = accountRepository.findAll();

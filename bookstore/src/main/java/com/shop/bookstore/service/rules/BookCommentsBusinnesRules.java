@@ -2,15 +2,13 @@ package com.shop.bookstore.service.rules;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
 import com.shop.bookstore.core.utilities.exceptions.BusinessException;
 import com.shop.bookstore.entities.BookComments;
 import com.shop.bookstore.repository.BookCommentsRepository;
-import lombok.AllArgsConstructor;
 
 
-@AllArgsConstructor
 @Service
 public class BookCommentsBusinnesRules {
 	BookCommentsRepository bookCommentsRepository;
@@ -33,6 +31,14 @@ public class BookCommentsBusinnesRules {
 		}
 		
 	}
+
+	public BookCommentsBusinnesRules(BookCommentsRepository bookCommentsRepository) {
+		super();
+		this.bookCommentsRepository = bookCommentsRepository;
+	}
+	
+	
+	
 	
 	
 	

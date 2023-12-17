@@ -1,7 +1,9 @@
 package com.shop.bookstore.service.concretes;
 
 import java.util.List;
+
 import org.springframework.stereotype.Service;
+
 import com.shop.bookstore.core.utilities.exceptions.BusinessException;
 import com.shop.bookstore.core.utilities.mappers.ModelMapperService;
 import com.shop.bookstore.dto.requests.book.CreateBookRequest;
@@ -13,18 +15,24 @@ import com.shop.bookstore.entities.Book;
 import com.shop.bookstore.repository.BookRepository;
 import com.shop.bookstore.service.abstracts.BookService;
 import com.shop.bookstore.service.rules.BookBusinessRules;
-import lombok.AllArgsConstructor;
 
 
-
-@AllArgsConstructor
 @Service
 public class BookManager implements BookService{
 	private BookRepository bookRepository;
 	private ModelMapperService modelMapperService;
 	private BookBusinessRules bookBusinessRules;
+	
 
 	
+	public BookManager(BookRepository bookRepository, ModelMapperService modelMapperService,
+			BookBusinessRules bookBusinessRules) {
+		super();
+		this.bookRepository = bookRepository;
+		this.modelMapperService = modelMapperService;
+		this.bookBusinessRules = bookBusinessRules;
+	}
+
 	@Override
 	public List<GetAllBooksResponse> getAll() {
 		List<Book> books = bookRepository.findAll();
